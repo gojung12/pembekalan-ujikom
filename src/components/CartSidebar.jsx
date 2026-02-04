@@ -89,10 +89,20 @@ function CartSidebar({ isOpen, closeCart, cartItems = [], updateQty }) {
                     </h4>
                     <small>{formatRupiah(item.price)}</small>
                   </div>
-                  <div className="qty-control">
-                    <button onClick={() => updateQty(item.id, -1)}>-</button>
+                  <div className="qty-control flex items-center gap-2">
+                    <button
+                      onClick={() => updateQty(item.id, -1)}
+                      className="bg-blue-500 text-white p-1 rounded w-8 h-8 flex items-center justify-center"
+                    >
+                      -
+                    </button>
                     <span>{item.qty}</span>
-                    <button onClick={() => updateQty(item.id, 1)}>+</button>
+                    <button
+                      onClick={() => updateQty(item.id, 1)}
+                      className="bg-blue-500 text-white p-1 rounded w-8 h-8 flex items-center justify-center"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               ))
@@ -121,8 +131,7 @@ function CartSidebar({ isOpen, closeCart, cartItems = [], updateQty }) {
                 {formatRupiah(totalPrice)}
               </h3>
               <button
-                className="checkout-btn"
-                style={{ marginTop: "20px", background: "#27ae60" }}
+                className="checkout-btn bg-blue-500 text-white p-1 w-full rounded-md h-8 mt-1"
                 onClick={() => setView("struk")}
               >
                 Konfirmasi Sudah Bayar
@@ -216,8 +225,7 @@ function CartSidebar({ isOpen, closeCart, cartItems = [], updateQty }) {
               <span>{formatRupiah(totalPrice)}</span>
             </div>
             <button
-              className="checkout-btn"
-              style={{ width: "100%" }}
+              className="checkout-btn bg-blue-500 text-white p-1 w-full rounded-md h-8 mt-1"
               onClick={() => setView("qr")}
             >
               Bayar Sekarang
