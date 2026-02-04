@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import ProductList from "./components/ProductList";
 import CartSidebar from "./components/CartSidebar";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -50,8 +52,16 @@ function App() {
   };
 
   // Fitur: Hapus Item
-  const removeItem = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  const removeFromCart = (id) => {
+    setCart((prev) => {
+      const newCart = prev.filter((item) => item.id !== id);
+
+      if (newCart.length === 0) {
+        setIsCartOpen(false);
+      }
+
+      return newCart;
+    });
   };
 
   return (
@@ -66,17 +76,34 @@ function App() {
         closeCart={() => setIsCartOpen(false)}
         cartItems={cart}
         updateQty={updateQty}
-        removeItem={removeItem}
+        removeFromCart={removeFromCart}
       />
 
-      <main className="container">
-        <h1 className="hero-title">🛍️ Katalog Produk Resmi</h1>
-        {loading ? (
-          <p style={{ textAlign: "center" }}>⏳ Sedang memuat...</p>
-        ) : (
-          <ProductList products={products} onAddToCart={addToCart} />
-        )}
-      </main>
+      <Routes>
+        {/* HOME */}
+        <Route
+          path="/"
+          element={
+            <main className="container">
+              <h1 className="hero-title">🛍️ Katalog Produk Resmi</h1>
+
+              {loading ? (
+                <p className="text-center">⏳ Loading...</p>
+              ) : (
+                <ProductList products={products} onAddToCart={addToCart} />
+              )}
+            </main>
+          }
+        />
+
+        {/* DETAIL */}
+        <Route
+          path="/product/:id"
+          element={
+            <ProductDetail products={products} onAddToCart={addToCart} />
+          }
+        />
+      </Routes>
     </>
   );
 }

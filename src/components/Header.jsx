@@ -7,7 +7,10 @@ function Header({ cartCount, onOpenCart }) {
         <div className="brand">⚡ SMK Store</div>
 
         {/* Saat diklik, panggil fungsi onOpenCart */}
-        <button className="cart-btn" onClick={onOpenCart}>
+        <button
+          className="cart-btn cursor-pointer rounded-sm p-2 hover:bg-gray-200 hover:rounded-sm transition"
+          onClick={onOpenCart}
+        >
           🛒 <span className="badge">{cartCount}</span>
         </button>
       </div>
