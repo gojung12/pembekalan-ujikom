@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import StarRating from "../components/StarRating";
-import Breadcrumb from "../components/Breadcrumb";
+import Breadcrumb from "../components/BreadCrumb";
 import { ShoppingBag, CreditCard } from "lucide-react";
 
 function ProductDetail({ products, onAddToCart }) {
